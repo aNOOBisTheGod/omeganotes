@@ -81,7 +81,8 @@ class _NoteEditPageState extends State<NoteEditPage> {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
         decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(20)),
+            color: Theme.of(context).scaffoldBackgroundColor,
+            borderRadius: BorderRadius.circular(20)),
         child: Column(
           children: [
             Row(

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:omeganotes/themes/themes.dart';
 import 'pages/all.dart';
+import 'package:provider/provider.dart';
+import 'models/theme.dart';
 
 void main(List<String> args) {
   runApp(OmegaNotes());
@@ -10,13 +13,16 @@ class OmegaNotes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomePage(),
-      theme: ThemeData(primaryColor: Color(0xFF880E4F)),
-      routes: {
-        HomePage.routeName: (context) => HomePage() 
-      },
-    );
+    return ChangeNotifierProvider(
+        create: (_) => ThemeModel(),
+        child: Consumer<ThemeModel>(
+            builder: (context, ThemeModel themeNotifier, child) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            home: HomePage(),
+            theme: themeNotifier.isDark ? darkTheme : brightTheme,
+            routes: {HomePage.routeName: (context) => HomePage()},
+          );
+        }));
   }
 }
