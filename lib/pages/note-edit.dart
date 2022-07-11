@@ -222,7 +222,7 @@ class _NoteEditPageState extends State<NoteEditPage> {
                       widget.note.color = value;
                       setState(() {});
                     },
-                    icon: Icon(Icons.palette),
+                    icon: const Icon(Icons.palette),
                     tooltip: "Edit note color",
                   ),
                   IconButton(

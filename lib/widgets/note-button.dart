@@ -55,12 +55,12 @@ class _NoteButtonState extends State<NoteButton> {
       },
       child: ClipRRect(
         child: BackdropFilter(
-          filter: new ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+          filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
           child: Container(
             decoration: BoxDecoration(
                 color: widget.note.color != null
-                    ? Color(widget.note.color!).withOpacity(.6)
-                    : Theme.of(context).primaryColor.withOpacity(.6),
+                    ? Color(widget.note.color!).withOpacity(.4)
+                    : Theme.of(context).primaryColor.withOpacity(.4),
                 borderRadius: BorderRadius.circular(10)),
             alignment: Alignment.topLeft,
             child: Padding(
@@ -71,15 +71,19 @@ class _NoteButtonState extends State<NoteButton> {
                   Text(
                     widget.note.title ?? "",
                     style: const TextStyle(
-                        fontSize: 30, fontWeight: FontWeight.bold),
+                        fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   Text(
                     widget.note.text == null
                         ? ""
-                        : widget.note.text!.length < 10
-                            ? widget.note.text!
-                            : "${widget.note.text!.substring(0, 10)}...",
-                    style: const TextStyle(fontSize: 20),
+                        : widget.note.text!.length < 200
+                            ? widget.note.text!.replaceAll('\n', " ")
+                            : "${widget.note.text!.substring(0, 200)}..."
+                                .replaceAll('\n', " "),
+                    // : widget.note.text!.indexOf("\n") > 10
+                    //     ? "${widget.note.text!.substring(0, 10)}..."
+                    //     : "${widget.note.text!.substring(0, widget.note.text!.indexOf("\n"))}...",
+                    style: const TextStyle(fontSize: 15),
                   )
                 ],
               ),

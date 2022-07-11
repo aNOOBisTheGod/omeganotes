@@ -63,36 +63,24 @@ class _HomePageState extends State<HomePage> {
     return Consumer<ThemeModel>(
         builder: (context, ThemeModel themeNotifier, child) {
       return Scaffold(
-          floatingActionButton: FloatingActionButton(
-            tooltip: "Create note",
-            backgroundColor: Theme.of(context).primaryColor,
-            onPressed: () {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => NoteEditPage(
-                      note: Note(
-                          id: notes!.length,
-                          pinned: false,
-                          text: "",
-                          title: ""))));
-            },
-            child: const Icon(Icons.add),
-          ),
-          appBar: AppBar(
-            title: const Text("OmegaNotes"),
-            backgroundColor: Theme.of(context).primaryColor,
-            centerTitle: true,
-            actions: [
-              IconButton(
-                  tooltip: "Change theme",
-                  icon: Icon(themeNotifier.isDark
-                      ? Icons.nightlight_round
-                      : Icons.wb_sunny),
+          floatingActionButton: ClipOval(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 15.0, sigmaY: 15.0),
+              child: FloatingActionButton(
+                  tooltip: "Create note",
+                  backgroundColor:
+                      Theme.of(context).primaryColor.withOpacity(.4),
                   onPressed: () {
-                    themeNotifier.isDark
-                        ? themeNotifier.isDark = false
-                        : themeNotifier.isDark = true;
-                  })
-            ],
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => NoteEditPage(
+                            note: Note(
+                                id: notes!.length,
+                                pinned: false,
+                                text: "",
+                                title: ""))));
+                  },
+                  child: const Icon(Icons.add)),
+            ),
           ),
           body: this.notes != null
               ? Stack(
@@ -141,21 +129,69 @@ class _HomePageState extends State<HomePage> {
                               height: double.infinity,
                             ),
                     ),
-                    Column(children: [
-                      Expanded(
-                        child: ListView.builder(
-                            itemCount: notes!.length,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.all(20.0),
-                                child: NoteButton(
-                                  note: notes![index],
-                                  deleteFunction: () => deleteNote(index),
-                                ),
-                              );
-                            }),
+                    Stack(children: [
+                      Padding(
+                        padding: EdgeInsets.only(
+                            top: MediaQuery.of(context).size.height * .12),
+                        child: Expanded(
+                          child: GridView.builder(
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                      childAspectRatio: 4 / 5,
+                                      crossAxisCount: 2),
+                              itemCount: notes!.length,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(20.0),
+                                  child: NoteButton(
+                                    note: notes![index],
+                                    deleteFunction: () => deleteNote(index),
+                                  ),
+                                );
+                              }),
+                        ),
                       )
                     ]),
+                    Container(
+                      height: MediaQuery.of(context).size.height * .15,
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                            Theme.of(context).primaryColor,
+                            Theme.of(context).scaffoldBackgroundColor
+                          ])),
+                    ),
+                    ClipRRect(
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 15.0, sigmaY: 15.0),
+                        child: Container(
+                          color: Theme.of(context).primaryColor.withOpacity(.5),
+                          height: MediaQuery.of(context).size.height * .15,
+                          child: Stack(fit: StackFit.expand, children: [
+                            const Center(
+                              child: Text(
+                                "Omega Notes",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 30),
+                              ),
+                            ),
+                            IconButton(
+                                alignment: Alignment.centerRight,
+                                tooltip: "Change theme",
+                                icon: Icon(themeNotifier.isDark
+                                    ? Icons.nightlight_round
+                                    : Icons.wb_sunny),
+                                onPressed: () {
+                                  themeNotifier.isDark
+                                      ? themeNotifier.isDark = false
+                                      : themeNotifier.isDark = true;
+                                })
+                          ]),
+                        ),
+                      ),
+                    ),
                   ],
                 )
               : const Center(
