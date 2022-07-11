@@ -121,24 +121,28 @@ class _HomePageState extends State<HomePage> {
                                 "assets/images/image.jpg",
                                 fit: BoxFit.cover,
                                 height: double.infinity,
+                                width: double.infinity,
                               ),
                             )
                           : Image.asset(
                               "assets/images/image.jpg",
                               fit: BoxFit.cover,
                               height: double.infinity,
+                              width: double.infinity,
                             ),
                     ),
                     Stack(children: [
                       Padding(
                         padding: EdgeInsets.only(
-                            top: MediaQuery.of(context).size.height * .12),
+                            top: MediaQuery.of(context).size.height * .15),
                         child: Expanded(
                           child: GridView.builder(
                               gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                  SliverGridDelegateWithFixedCrossAxisCount(
                                       childAspectRatio: 4 / 5,
-                                      crossAxisCount: 2),
+                                      crossAxisCount:
+                                          MediaQuery.of(context).size.width ~/
+                                              200),
                               itemCount: notes!.length,
                               itemBuilder: (context, index) {
                                 return Padding(

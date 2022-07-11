@@ -76,10 +76,12 @@ class _NoteButtonState extends State<NoteButton> {
                   Text(
                     widget.note.text == null
                         ? ""
-                        : widget.note.text!.length < 200
+                        : widget.note.text!.length <
+                                MediaQuery.of(context).size.width ~/ 3.3
                             ? widget.note.text!.replaceAll('\n', " ")
-                            : "${widget.note.text!.substring(0, 200)}..."
+                            : "${widget.note.text!.substring(0, MediaQuery.of(context).size.width ~/ 3.3)}..."
                                 .replaceAll('\n', " "),
+                    maxLines: (MediaQuery.of(context).size.width ~/ 100),
                     // : widget.note.text!.indexOf("\n") > 10
                     //     ? "${widget.note.text!.substring(0, 10)}..."
                     //     : "${widget.note.text!.substring(0, widget.note.text!.indexOf("\n"))}...",
