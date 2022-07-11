@@ -19,7 +19,7 @@ class OmegaNotes extends StatelessWidget {
             builder: (context, ThemeModel themeNotifier, child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: HomePage(),
+            home: const HomePage(),
             theme: themeNotifier.isDark ? darkTheme : brightTheme,
             routes: {HomePage.routeName: (context) => HomePage()},
           );

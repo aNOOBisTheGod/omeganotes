@@ -10,13 +10,14 @@ ThemeData brightTheme = ThemeData(
     bodyText2: TextStyle(color: Colors.black),
     subtitle1: TextStyle(color: Colors.black),
     bodyText1: TextStyle(color: Colors.black),
+    headline4: TextStyle(color: Colors.black),
   ),
-  iconTheme: IconThemeData(color: Colors.black),
+  iconTheme: const IconThemeData(color: Colors.black),
 );
 
 ThemeData darkTheme = ThemeData(
-  primaryColor: const Color(0xFFB80564),
-  accentColor: const Color(0xFFB80564),
+  primaryColor: const Color(0xFFf68b70),
+  accentColor: const Color(0xFFf68b70),
   scaffoldBackgroundColor: const Color.fromARGB(255, 48, 48, 48),
   textTheme: const TextTheme(
     headline1: TextStyle(color: Colors.white),
@@ -24,6 +25,7 @@ ThemeData darkTheme = ThemeData(
     bodyText2: TextStyle(color: Colors.white),
     subtitle1: TextStyle(color: Colors.white),
     bodyText1: TextStyle(color: Colors.white),
+    headline4: TextStyle(color: Colors.white),
   ),
-  iconTheme: IconThemeData(color: Colors.white),
+  iconTheme: const IconThemeData(color: Colors.white),
 );
