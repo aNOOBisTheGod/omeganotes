@@ -142,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                                       childAspectRatio: 4 / 5,
                                       crossAxisCount:
                                           MediaQuery.of(context).size.width ~/
-                                              200),
+                                              150),
                               itemCount: notes!.length,
                               itemBuilder: (context, index) {
                                 return Padding(
