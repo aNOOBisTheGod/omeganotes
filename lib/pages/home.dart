@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:omeganotes/models/note.dart';
 import 'package:omeganotes/pages/note-edit.dart';
-import 'package:omeganotes/themes/themes.dart';
 import 'package:omeganotes/widgets/note-button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';

@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'models/theme.dart';
 
 void main(List<String> args) {
-  runApp(OmegaNotes());
+  runApp(const OmegaNotes());
 }
 
 class OmegaNotes extends StatelessWidget {

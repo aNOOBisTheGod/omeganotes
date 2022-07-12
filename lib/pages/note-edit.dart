@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:omeganotes/pages/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -156,7 +157,7 @@ class _NoteEditPageState extends State<NoteEditPage> {
                           )))
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               Expanded(
